@@ -1,10 +1,6 @@
 'use strict'
 
 const {mongoose}=require('../configs/dbConnection')
-// {
-//     "userId":"88452v45d3b5800f1"
-//     "token": "...tokenKey..."
-// }
 
 const TokenSchema = new mongoose.Schema(
 

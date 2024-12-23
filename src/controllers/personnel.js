@@ -28,7 +28,7 @@ module.exports = {
     // console.log("------------", req.session);
     res.status(200).send({
       error: false,
-      //! detail
+   
       detail: await res.getModelListDetails(Personnel),
       data,
     });
@@ -46,14 +46,10 @@ module.exports = {
             }
         }
     */
-    //! sistemde bir admin olacaksa ve db de admin önceden tanımlanmışsa
     // const isFirstAccount = (await Personnel.countDocuments()) === 0;
     // req.body.isAdmin = isFirstAccount ? true : false;
 
-    //! ya da direkt admin false
     req.body.isAdmin = false;
-
-    //! isLead Control:
 
     const isLead = req.body.isLead || false;
 
@@ -65,7 +61,6 @@ module.exports = {
       );
     }
     const data = await Personnel.create(req.body);
-    //! Task: kendisi takım lideriyse ve bunu false'a çekerse
     res.status(201).send({
       error: false,
       data,
@@ -97,7 +92,6 @@ module.exports = {
             }
         }
     */
-    //! isLead Control:
     const isLead = req.body.isLead || false;
 
     if (isLead) {
@@ -113,7 +107,6 @@ module.exports = {
       );
     }
 
-    //! Does it perform update validation by default?
     const data = await Personnel.updateOne({ _id: req.params.id }, req.body, {
       runValidators: true,
     });
@@ -124,7 +117,6 @@ module.exports = {
       new: await Personnel.findOne({ _id: req.params.id }),
     });
   },
-  //! Task:team lead silinirse
   delete: async (req, res) => {
     /*
         #swagger.tags = ['Personnels']
@@ -137,50 +129,4 @@ module.exports = {
       data,
     });
   },
-
-  //   //! LOGIN & LOGOUT
-
-  //   login: async (req, res) => {
-  //     const { username, password } = req.body;
-
-  //     if (username && password) {
-  //       const user = await Personnel.findOne({ username, password });
-  //       if (user) {
-  //         if (user.password !== passwordEncrypt(password)) {
-  //           res.errorStatusCode = 401;
-  //           throw new Error("Login parameters are not true.");
-  //         }
-  //         // Set Session:
-  //         req.session = {
-  //           id: user._id,
-  //           password: user.password,
-  //         };
-  //         // Set Cookie:
-  //         if (req.body?.rememberMe) {
-  //           req.session.rememberMe = true;
-  //           req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 3; // 3 Days
-  //         }
-
-  //         res.status(200).send({
-  //           error: false,
-  //           message: "Login is OK",
-  //           user,
-  //         });
-  //       } else {
-  //         res.errorStatusCode = 401;
-  //         throw new Error("Wrong Username or Password.");
-  //       }
-  //     } else {
-  //       res.errorStatusCode = 401;
-  //       throw new Error("Please enter a valid username and password.");
-  //     }
-  //   },
-
-  //   logout: async (req, res) => {
-  //     req.session = null;
-  //     res.send({
-  //       error: false,
-  //       maessage: "Logout is completed",
-  //     });
-  //   },
 };
