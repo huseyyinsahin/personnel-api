@@ -1,9 +1,5 @@
 "use strict";
 
-/* -------------------------------------------------------
-    EXPRESS - Personnel API
-------------------------------------------------------- */
-
 const Personnel = require("../models/personnel");
 const passwordEncrypt = require("../helpers/passwordEncrypt");
 
@@ -22,13 +18,11 @@ module.exports = {
             </ul>
         `
     */
-    //! data
     const data = await res.getModelList(Personnel, {}, "departmentId");
 
-    // console.log("------------", req.session);
     res.status(200).send({
       error: false,
-   
+
       detail: await res.getModelListDetails(Personnel),
       data,
     });
@@ -46,8 +40,6 @@ module.exports = {
             }
         }
     */
-    // const isFirstAccount = (await Personnel.countDocuments()) === 0;
-    // req.body.isAdmin = isFirstAccount ? true : false;
 
     req.body.isAdmin = false;
 

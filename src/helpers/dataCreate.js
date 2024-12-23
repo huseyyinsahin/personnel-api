@@ -164,19 +164,19 @@ async function dataCreate() {
   await Department.insertMany(departments);
   await Personnel.deleteMany();
   await Personnel.create({
-    "departmentId": "66952d66e1b780e7b49e8111",
-    "username": "admin",
-    "password": "test1",
-   "firstName": "Admin",
-    "lastName": "Doe",
-    "phone": "1234567890",
-    "email": "admin@example.com",
-    "title": "Software Engineer",
-    "salary": 75000,
-    "description": "Junior developer in the IT department.",
-    "isActive": true,
-   "isAdmin": true,
-    "isLead": true,
+    departmentId: "66952d66e1b780e7b49e8111",
+    username: "admin",
+    password: "test1",
+    firstName: "Admin",
+    lastName: "Doe",
+    phone: "1234567890",
+    email: "admin@example.com",
+    title: "Software Engineer",
+    salary: 75000,
+    description: "Junior developer in the IT department.",
+    isActive: true,
+    isAdmin: true,
+    isLead: true,
   });
   // let isFirstAccount = (await Personnel.countDocuments()) === 0;
   // for (const personnel of personnels) {

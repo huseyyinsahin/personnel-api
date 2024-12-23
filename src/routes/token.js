@@ -1,4 +1,5 @@
 "use strict";
+
 const { isAdmin } = require("../middlewares/permissions");
 
 const router = require("express").Router();

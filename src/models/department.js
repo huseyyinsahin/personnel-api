@@ -2,7 +2,6 @@
 
 const { mongoose } = require("../configs/dbConnection");
 
-
 const DepartmentSchema = new mongoose.Schema(
   {
     name: {
@@ -12,8 +11,7 @@ const DepartmentSchema = new mongoose.Schema(
       unique: true,
     },
   },
-  { collection: "departments", timestamps: true },
+  { collection: "departments", timestamps: true }
 );
 
 module.exports = mongoose.model("Department", DepartmentSchema);
-
