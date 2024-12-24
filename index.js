@@ -57,7 +57,6 @@ app.all("/", (req, res) => {
   res.send({
     error: false,
     message: "Welcome to PERSONNEL API",
-    session: req.session,
   });
 });
 /* ------------------------------------------------------- */
