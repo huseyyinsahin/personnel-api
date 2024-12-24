@@ -24,8 +24,8 @@ module.exports = {
     const { username, password } = req.body;
 
     if (username && password) {
-      const user = await Personel.findOne({ username, password });
-      if (user && user.isActive) {
+      const user = await Personel.findOne({ username });
+      if (user && user.password == passwordEncrypt(password) && user.isActive) {
         let tokenData = await Token.findOne({ userId: user._id });
 
         if (!tokenData) {
