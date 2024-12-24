@@ -45,14 +45,6 @@ dbConnection();
 
 app.use(express.json());
 
-const session = require("cookie-session");
-
-app.use(
-  session({
-    secret: process.env.SECRET_KEY,
-    httpOnly: false,
-  })
-);
 /* ------------------------------------------------------- */
 
 app.use(require("./src/middlewares/authentication"));

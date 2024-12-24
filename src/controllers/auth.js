@@ -29,8 +29,7 @@ module.exports = {
         let tokenData = await Token.findOne({ userId: user._id });
 
         if (!tokenData) {
-          const tokenKey = passwordEncrypt(user._id + Date.now());
-          console.log(tokenKey);
+          const tokenKey = passwordEncrypt(process.env.SECRET_KEY);
           tokenData = await Token.create({ userId: user._id, token: tokenKey });
         }
 
@@ -53,7 +52,6 @@ module.exports = {
             #swagger.tags = ['Authentication']
             #swagger.summary = 'Logout'
         */
-    req.session = null;
 
     const auth = req.headers?.authorization || null;
     const tokenKey = auth ? auth.split(" ") : null;

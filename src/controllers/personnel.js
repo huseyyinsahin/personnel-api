@@ -1,7 +1,8 @@
 "use strict";
 
 const Personnel = require("../models/personnel");
-const passwordEncrypt = require("../helpers/passwordEncrypt");
+
+const { CustomError } = require("../errors/customError");
 
 module.exports = {
   list: async (req, res) => {
@@ -22,7 +23,6 @@ module.exports = {
 
     res.status(200).send({
       error: false,
-
       detail: await res.getModelListDetails(Personnel),
       data,
     });
@@ -64,7 +64,12 @@ module.exports = {
         #swagger.tags = ['Personnels']
         #swagger.summary = 'Read Single Personnel'
     */
-    const data = await Personnel.findOne({ _id: req.params.id });
+    let data = false;
+    if (req.params.id == req.user._id) {
+      data = await Personnel.findOne({ _id: req.params.id });
+    } else {
+      throw new CustomError("Sadece kendi bilgilerinizi görebilirsiniz", 401);
+    }
 
     res.status(200).send({
       error: false,
