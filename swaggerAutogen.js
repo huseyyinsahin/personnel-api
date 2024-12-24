@@ -14,7 +14,7 @@ const document = {
     title: packageJson.name,
     description: packageJson.description,
 
-    contact: { name: packageJson.author, email: "qadir@clarusway.com" },
+    contact: { name: packageJson.author, email: "example@mail.com" },
     license: { name: packageJson.license },
   },
   host: HOST + ":" + PORT,

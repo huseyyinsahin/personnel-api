@@ -64,7 +64,7 @@ module.exports = {
         #swagger.tags = ['Personnels']
         #swagger.summary = 'Read Single Personnel'
     */
-    let data = false;
+    let data = null;
     if (req.params.id == req.user._id) {
       data = await Personnel.findOne({ _id: req.params.id });
     } else {
