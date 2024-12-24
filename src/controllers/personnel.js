@@ -41,7 +41,7 @@ module.exports = {
         }
     */
 
-    req.body.isAdmin = false;
+
 
     const isLead = req.body.isLead || false;
 
@@ -65,7 +65,7 @@ module.exports = {
         #swagger.summary = 'Read Single Personnel'
     */
     let data = null;
-    if (req.params.id == req.user._id) {
+    if (req.params.id == req.user._id || req.user.isAdmin) {
       data = await Personnel.findOne({ _id: req.params.id });
     } else {
       throw new CustomError("Sadece kendi bilgilerinizi görebilirsiniz", 401);
